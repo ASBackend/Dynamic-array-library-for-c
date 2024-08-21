@@ -80,4 +80,4 @@ void dynamicArrayFree_##TYPE(struct DynamicArray_##TYPE* array)\
 
 #define dynamicArrayPopBack(TYPE, DYNAMIC_ARRAY_PTR) dynamicArrayPopBack_##TYPE(DYNAMIC_ARRAY_PTR)
 
-#define dynamicArrayFree(DYNAMIC_ARRAY_PTR) dynamicArrayFree_##TYPE(DYNAMIC_ARRAY_PTR)
+#define dynamicArrayFree(TYPE, DYNAMIC_ARRAY_PTR) dynamicArrayFree_##TYPE(DYNAMIC_ARRAY_PTR)
