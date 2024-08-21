@@ -57,19 +57,27 @@ void dynamicArrayPopBack_##TYPE(struct DynamicArray_##TYPE* array)\
 {\
 	array->array = realloc(array->array, (array->lenght)-- * sizeof(TYPE));\
 }\
+\
+void dynamicArrayFree_##TYPE(struct DynamicArray_##TYPE* array)\
+{\
+	free(array->array);\
+	array->lenght = 0;\
+}
 
 #define DynamicArray(TYPE) struct DynamicArray_##TYPE
 
 #define dynamicAlloc(TYPE, AMOUNT) {(TYPE*) malloc(AMOUNT*sizeof(TYPE)), AMOUNT}
 
-#define dynamicArrayGet(TYPE, DYNAMIC_ARRAY, INDEX) dynamicArrayGet_##TYPE(&DYNAMIC_ARRAY, INDEX)
+#define dynamicArrayGet(TYPE, DYNAMIC_ARRAY_PTR, INDEX) dynamicArrayGet_##TYPE(DYNAMIC_ARRAY_PTR, INDEX)
 
-#define dynamicArraySet(TYPE, DYNAMIC_ARRAY, INDEX, VALUE) dynamicArraySet_##TYPE(&DYNAMIC_ARRAY, INDEX, VALUE)
+#define dynamicArraySet(TYPE, DYNAMIC_ARRAY_PTR, INDEX, VALUE) dynamicArraySet_##TYPE(DYNAMIC_ARRAY_PTR, INDEX, VALUE)
 
-#define dynamicArrayAssignAll(TYPE, DYNAMIC_ARRAY, LIST) dynamicArrayAssignAll_##TYPE(&DYNAMIC_ARRAY, LIST, sizeof(LIST)/sizeof(TYPE))
+#define dynamicArrayAssignAll(TYPE, DYNAMIC_ARRAY_PTR, LIST) dynamicArrayAssignAll_##TYPE(DYNAMIC_ARRAY_PTR, LIST, sizeof(LIST)/sizeof(TYPE))
 
-#define dynamicArrayFill(TYPE, DYNAMIC_ARRAY, VALUE) dynamicArrayFill_##TYPE(&DYNAMIC_ARRAY, VALUE)
+#define dynamicArrayFill(TYPE, DYNAMIC_ARRAY_PTR, VALUE) dynamicArrayFill_##TYPE(DYNAMIC_ARRAY_PTR, VALUE)
 
-#define dynamicArrayPushBack(TYPE, DYNAMIC_ARRAY, VALUE) dynamicArrayPushBack_##TYPE(&DYNAMIC_ARRAY, VALUE)
+#define dynamicArrayPushBack(TYPE, DYNAMIC_ARRAY_PTR, VALUE) dynamicArrayPushBack_##TYPE(DYNAMIC_ARRAY_PTR, VALUE)
 
-#define dynamicArrayPopBack(TYPE, DYNAMIC_ARRAY) dynamicArrayPopBack_##TYPE(&DYNAMIC_ARRAY)
+#define dynamicArrayPopBack(TYPE, DYNAMIC_ARRAY_PTR) dynamicArrayPopBack_##TYPE(DYNAMIC_ARRAY_PTR)
+
+#define dynamicArrayFree(DYNAMIC_ARRAY_PTR) dynamicArrayFree_##TYPE(DYNAMIC_ARRAY_PTR)
